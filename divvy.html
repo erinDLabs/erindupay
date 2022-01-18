@@ -4,12 +4,13 @@
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="en">
 	<head>
 		<title>Erin Dupay</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery.dropotron.min.js"></script>
@@ -21,6 +22,7 @@
 			<link rel="stylesheet" href="css/style.css" />
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+
 	</head>
 	<body class="no-sidebar">
 
@@ -67,10 +69,526 @@
 								<h2>Analysis of A Year of Divvy Bike Riders</h2>
 								<p>Exploratory Analysis for December 2020 - November 2021 Historical Data</p>
 							</header>
-							<a href="#" class="image featured"><img src="images/pic06.jpg" alt="" /></a>
-							<p>DETAILS COMING SOON</p>
-							<p>Divvy Bikes is a bike share company located in Chicago, IL which is managed by Lyft. Lyft offers open autonomous historical data. This exploratory analysis looks at the use difference between Casual riders who purchase either a single use pass, or a day pass which offers unlimited rides within 24 hours, and Membership riders which hold an annual pass with unlimited rides.</p>
-						</article>
+                <p>In the last year I moved from the very rural Poconos to the suburbs of Seattle, near where I grew up. A number of changes have occurred since I left the area, but some of the notable changes are related to the population increase, housing changes, and the new light-rail which is currently under construction. Traffic congestion has been a problem for as long as I can remember, but luckily, Seattle is home to a great public transportation system, an established multi-use network of trails and bridges, and marked traffic lanes for bikes on many roadways. With moderate, albeit drizzly weather year-round, getting around the city using a combination of walking, biking and public transportation can be affordable, pleasant and a great way to get some needed exercise.</p>
+
+                <p>Having so many options for getting around in Seattle, many families are able to voluntarily downsize to a single car. For some, however, the downsizing is not by choice. As the cost of living continues to rise due to economic pressures many individuals and families are forced to cut costs wherever they can. The cost of owning a car can be as low as $6,496<span class="citation">(<a href="#ref-living" role="doc-biblioref"><span>“Living Wage Calculator - Living Wage Calculation for Seattle-Tacoma-Bellevue, <span>WA</span>”</span> n.d.</a>)</span> to well over $11,000 a year, versus owning a bike at a modest cost of only $100 to $400 per year, depending on the estimate. We can assume for sake of simplification that we will go with $350, and add this to the most expensive Regional Pass on an ORCA card, costing $360 a month (although the $99 or $108 per month passes or more common)<span class="citation">(<a href="#ref-orca" role="doc-biblioref"><span>“<span>ORCA</span>: Home”</span> n.d.</a>)</span>, which comes out to $4670 per year when using public transportation in addition to a bike for a daily commute. Admittedly, Seattle has hills, and some people do not love the rain as much as I do, so this is where an ebike could be useful. Again, you’d need to consider a slight cost increase, but once the bike investment has been made, it is largely the same as a classic petal bike for maintenance, only needing additional costs for replacing batteries every few years and regular charging <span class="citation">(<a href="#ref-electric_cost" role="doc-biblioref"><span>“Electric Bike Maintenance Cost”</span> n.d.</a>)</span>, which is minimal and dependant of current energy costs. Owning any bike, however, may not be an option to everyone, particularly if living in one of the many small apartments around the area which do not offer safe storage options for bikes.</p>
+
+                <p>In many Seattle neighborhoods, bright orange Lime bikes have been scattered throughout and parked on the edge of the sidewalk or in parking lots, offering ebike options to the community. Lime bikes is a local Bike-share company owned and operated by Uber which offers $1 unlocked fees and per minute charges for ebikes and scooters. Other companies in Seattle include Jump and Veo, but all of these companies are independently owned and operated <span class="citation">(<a href="#ref-seattle_bikeshare" role="doc-biblioref"><span>“Bike Share - Transportation <span></span> Seattle.gov”</span> 2021</a>)</span>. Recently these bikes have been disappearing, after for what seemed like months of sitting around, and looking neglected. It appeared to me that these bikes never moved, seeing the same graffiti tagged bikes repeatedly on my runs through the neighborhood. Now, they appear to being replaced by newer green, black and white electric scooters. Scooters are clearly more fun, but why this change? Maybe there is something in their ridership data that shows them what riders are preferring. Perhaps they have data identifying trends in bike usage that I don’t have access to, which would indicate that the usage is higher than I thought.</p>
+
+                <p>Thus far, I have been unable to find any historical open data from these companies. While completing my Google Data Analytics Professional Certification I was exposed to Divvy Bikes, a Chicago based bike-share company, which does offers historical open data that can be used to do an exploratory analysis on how a ride-share company might be used in this neighborhood. I should be clear however, this analysis has nothing to do with Seattle. I am looking at Chicago data to understand how bike-share companies might be offering affordable transportation options, and how they might be used by riders. Divvy data collected from December 2020 through November 2021 contains data related to their two rider types: annual membership riders and non-membership rider, the last we will call Casual Riders. What this data shows is that annual membership holders use the bikes to go about regular daily activities(commuting, exercise, work or personal errands, etc), whereas non-membership or casual riders are likely using the bikes for sight-seeing and recreation.</p>
+
+                <div id="divvy-bikes---the-company" class="section level2">
+                <h2>Divvy Bikes - The Company</h2>
+                <p>Divvy is a bike share system, started in 2013 and owned by the Chicago Department of Transportation. Staring in 2019, Lyft took over the management, while Chicago Department of Transportation retained the ownership. The system has been expanded and now spans the Evanstan and Chicago areas, with pricing options that can be used by both visitor and resident riders. The bikes include classic bikes and e-bikes to accommodate different fitness levels which are checked out and returned to any of Divvy bikes network of docking stations. At the time of this report, there were 836 stations with a fleet of up to 16,500 total bikes with ~7,000 of those being e-bikes<span class="citation">(<a href="#ref-divvy_2021" role="doc-biblioref"><span>“Divvy Kicks Off West Side Expansion with 3,500 Bikes, 107 <span>‘e-Station’</span> Parking Areas. Streetsblog Chicago”</span> 2021a</a>)</span>.</p>
+  
+                <p><strong>Pricing options include:</strong></p>
+                <ul>
+                  <li><p>Single Ride for up to 30 minutes priced at $3.30</p></li>
+                  <li><p>Day Pass for unlimited 3 hour rides within 24 hours for $15</p></li>
+                  <li><p>Annual Membership for unlimited 45 minute rides priced at $108 for the year.</p></li>
+                </ul>
+
+                <p>Single Riders and Day Pass Riders are what I will consider as Casual Riders, as this is consistent with the terms used by Divvy Bikes to refer to the non membership riders.</p>
+
+                <p><strong>Additional fees are added if:</strong></p>
+                <ul>
+                  <li><p>Bike is out longer than allowed time limit: $0.15/minute</p></li>
+                  <li><p>Upgrading to an ebike: $0.20/minute for Zone 1 for Casual Riders and $0.15/minute for Membership riders, however there is no upgrade fee for Zone 2.</p></li>
+                  <li><p>Bike is lost or stolen: $1200</p></li>
+                  <li><p>Parking violations: $25</p></li>
+                </ul>
+                </div>
+<!--- UGGGHH. Forget the stupid formatting. Just make it readabale! --->
+<div id="investigation-problem" class="section level2">
+<h2>Investigation Problem</h2>
+<p>This exploratory analysis will focus on how riders use the bikes. This question can be answered by looking at the following three questions:</p>
+<ul>
+<li>Where do they get their bikes?</li>
+<li>What routes are they traveling?</li>
+<li>When are they riding?</li>
+</ul>
+</div>
+
+<div id="the-data" class="section level2">
+<h2>The Data</h2>
+<p>The Divvy bikes open historical data is provided at the website <a href="https://divvy-tripdata.s3.amazonaws.com/index.html" class="uri">https://divvy-tripdata.s3.amazonaws.com/index.html</a> under the <a href="https://ride.divvybikes.com/data-license-agreement">Divvy Data License Agreement</a>. In this analysis I look at the historical data from the last 12 months which include data collected from December of 2020 through November 2021, although data is available beginning in 2013 and appears to update monthly.</p>
+<p>This dataset include trips that are anonymized to include:</p>
+<ul>
+<li>Ride identifiers (ride_id)</li>
+<li>Bike type used (rideable_type)</li>
+<li>Trip start date and time (started_at)</li>
+<li>Trip end date and time (ended_at)</li>
+<li>Trip start station (start_station_name), with stations identifiers (start_station_id) and locations in latitude and longitude (start_lat, start_lng)</li>
+<li>Trip end station (end_station_name), with stations identifiers (end_station_id) and locations in latitude and longitude (end_lat, end_lng)</li>
+</ul>
+<p>Data is expected to be pre-processed to remove trips taken by staff as they service or inspect the system, as well as removing any trips under 60 seconds due to potentially false starts. <a href="https://ride.divvybikes.com/system-data">See here</a> for details provided by Divvy. Cleaning of this data was completed to remain consistent with what was stated.</p>
+<p>Open data for the station names for verification of stations is provided by the Chicago Data Portal Website <a href="https://data.cityofchicago.org/Transportation/Divvy-Bicycle-Stations-Historical/eq45-8inv/data">here</a>. This data tracked historical data for all bicycles and bike docks, and has 8 variables which include:</p>
+<ul>
+<li>Station IDs (ID)</li>
+<li>Station Name</li>
+<li>Total Docks</li>
+<li>Docks in Service</li>
+<li>Status</li>
+<li>Latitude</li>
+<li>Longitude</li>
+<li>Location (combined latitude and longitude)</li>
+</ul>
+
+<div id="cleaning-the-data" class="section level3">
+<h3>Cleaning the Data</h3>
+
+<p>Normal Cleaning processes were completed before the analysis took place. Cleaning steps were are follows:</p>
+<ol style="list-style-type: decimal">
+<li><p>Checking the structure of the individual files and merging into a single data frame.</p></li>
+<li><p>Checking for duplicates, staff rides and ride duration that were negative or less than one minute, and removing these from the data frame.</p></li>
+<li><p>Correcting obviously incorrect Station names. I did not, however, remove rides without a stations name. It is clear from the website discussing fines that occasionally users return bikes without docking with a station. My assumption is that another rider would be able check out an un-docked bike near a station without issue.</p></li>
+<li><p>Aggregating data required the use of variables that were not provided, so the following data variables were added to the dataset:</p></li>
+</ol>
+<ul>
+<li><p>date (yyyy-mm-dd): this will be the date at which the bike was initially checked out, extracted from started_at, then broken down into separate columns for:</p>
+<ul>
+<li>month</li>
+<li>day</li>
+<li>year</li>
+<li>day_of_week: a calculated field based on the actual date.</li>
+</ul></li>
+<li><p>ride_length_sec (in seconds): a calculated field based on the started_at and ended_at dates.</p></li>
+<li><p>ride_length_min (in minutes): a calculated field based on the started_at and ended_at dates.</p></li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>Some stations had to be removed as they were not consistent with the stations data provided by the Chicago Department of Transportation data. My assumption was that these rides were completed staff members, so the rides containing start or stop locations at the following stations where removed.</li>
+</ol>
+<ul>
+<li>Base - 2132 W Hubbard Warehouse</li>
+<li>Chicago Ave &amp; Dempster St (listed as a future site not yet operating at the time of this analysis)</li>
+<li>DIVVY CASSETTE REPAIR MOBILE STATION</li>
+<li>HUBBARD ST BIKE CHECKING (LBS-WH-TEST)</li>
+<li>Lyft Driver Center Private Rack</li>
+<li>WEST CHI-WATSON</li>
+</ul>
+<p>There were two other stations that were not valid operating stations according to my dataset on station data.</p>
+<ul>
+<li><p>The Marshfield Ave &amp; Cortland St station: I could not determine if this was temporarily or permanently closed. As it has been a valid station for the last 7 years, all riders for this station were kept.</p></li>
+<li><p>The Throop/Hastings Mobile Station: located on the opposite side of Fosco Park from another station and. I could not find anything confirming it as an operational station. so I assumed this to be a temporary station. I relabeled all start and end stations that used this station using the closest station at the Racine Ave &amp; 13th St Station, also located at Fosco Park.</p></li>
+</ul>
+<p>This final data frame contains 4,466,054 observations and 20 variables, which was then exported as a CSV file for analysis in both R and Tableau Public.</p>
+</div>
+
+</div>
+<div id="the-analysis" class="section level2">
+<h2>The Analysis</h2>
+
+<div id="which-stations-are-popular" class="section level3">
+<h3>Which Stations are Popular?</h3>
+
+<p>To answer this first question, I looked at how many rides started at every station. In the first figure below are two charts, on the left is a density plot of all casual rides, on the right is the same for the membership rides. Darker stations have fewer number of trips, whereas the brighter red increases into yellow, which corresponds to the highest number of trips starting at those stations. Notice that the casual rides have a strong bright yellow spot on the waterfront, particularly at the Navy Pier which is a popular tourist attraction, yet less intense everywhere else. Membership riders have bright spots at multiple locations around town. Clearly there is emerging a pattern that separates the two groups, but more detail is needed. In the next chart I focus in on the top 10 stations for each group to better understand what might be driving the higher popularity of some stations.</p>
+
+
+<div class='tableauPlaceholder' id='viz1642037100267' style='position: relative'>
+  <object class='tableauViz'  style='display:none;'>
+    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+    <param name='embed_code_version' value='3' /> 
+    <param name='site_root' value='' />
+    <param name='name' value='DivvyBikesAnalysisofCasualRidersvsMembershipRiders&#47;PopularityofStartStationsWeb' />
+    <param name='tabs' value='no' />
+    <param name='toolbar' value='yes' />
+    <param name='animate_transition' value='yes' />
+    <param name='display_static_image' value='yes' />
+    <param name='display_spinner' value='yes' />
+    <param name='display_overlay' value='yes' />
+    <param name='display_count' value='yes' />
+    <param name='language' value='en-US' />
+    <param name='filter' value='publish=yes' />
+  </object>
+</div>                
+<script type='text/javascript'>                    
+  var divElement = document.getElementById('viz1642037100267');                    
+  var vizElement = divElement.getElementsByTagName('object')[0];                    
+    if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='1250px';
+      vizElement.style.maxWidth='100%';
+      vizElement.style.minHeight='650px';
+      vizElement.style.maxHeight=(divElement.offsetWidth*0.75)+'px';} 
+    else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='1250px';
+      vizElement.style.maxWidth='100%';
+      vizElement.style.minHeight='650px';
+      vizElement.style.maxHeight=(divElement.offsetWidth*0.75)+'px';} 
+    else { vizElement.style.width='100%';vizElement.style.minHeight='650px';
+      vizElement.style.maxHeight=(divElement.offsetWidth*1.77)+'px';}                     
+  var scriptElement = document.createElement('script');                    
+  scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';       
+  vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+</script>
+<br />						
+<p>A surprising detail is shown in the Top 10 Popular Stations chart for Causal riders. I created 15 subdivisions, as 10 was not enough to see a difference between the top stations numbers 2-10. The Streeter Dr &amp; Grand Ave station, located at the Navy Pier, was used significantly more than any of the other stations for casual riders with 63,033 rides, whereas the second most popular station had almost half that number, at 33,874 rides. I would like to note here, that casual rides make up 45% of all rides, and the Streeter Dr &amp; Grand Ave Station make up 3% of those. In the chart showing membership rides, it was sufficient to see a variation between them with only 10 divisions, as the number of trips range from 15,744 at the lowest of the 10 to 23,336 for the highest. Focusing on just these 10 stations for each group, I used maps to determine what features and amenities might be in the area, generally the streets immediately around the station. There were three stations in common between these two groups. These three stations are:</p>		
+
+<ul>
+<li><p><strong>DuSable Lake Shore Dr &amp; North Blvd Station:</strong> This station is located at Lincoln Park major intersection, near the water, parking, local ball fields, many other recreational and non recreational locations.</p></li>
+<li><p><strong>Wells St &amp; Concord Ln:</strong> This station is located near shopping, hotels, apartments, and near Lincoln park.</p></li>
+<li><p><strong>Wells St &amp; Elm St:</strong> Also near restaurants and apartments. However, it is near the Walter Payton College Preparatory High School and the Clark Davidson Subway station. These last two might be more important to membership riders, lending to its higher popularity with this group.</p></li>
+</ul>
+<p>Even considering these common stations, it becomes clear that casual and membership rider patterns show that casual riders favor tourist and recreational sites, membership riders heavily favor sites with parking, shopping, apartment buildings and schools.</p>
+
+<center>
+<div class='tableauPlaceholder' id='viz1642037649205' style='position: relative'>
+  <object class='tableauViz'  style='display:none;'>
+    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+    <param name='embed_code_version' value='3' /> 
+    <param name='site_root' value='' />
+    <param name='name' value='DivvyBikesAnalysisofCasualRidersvsMembershipRiders&#47;Top10PopularStations' />
+    <param name='tabs' value='no' />
+    <param name='toolbar' value='no' />
+    <param name='animate_transition' value='yes' />
+    <param name='display_static_image' value='yes' />
+    <param name='display_spinner' value='yes' />
+    <param name='display_overlay' value='yes' />
+    <param name='display_count' value='yes' />
+    <param name='language' value='en-US' />
+    <param name='filter' value='publish=yes' />
+  </object>
+</div>    </center>            
+<script type='text/javascript'>                    
+  var divElement = document.getElementById('viz1642037649205');                    
+  var vizElement = divElement.getElementsByTagName('object')[0];                    
+  if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='850px';
+    vizElement.style.maxWidth='100%';
+    vizElement.style.minHeight='850px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*0.75)+'px';} 
+  else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='850px';
+    vizElement.style.maxWidth='100%';vizElement.style.minHeight='850px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*0.75)+'px';} 
+  else { vizElement.style.width='100%';vizElement.style.minHeight='850px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*1.77)+'px';}                     
+  var scriptElement = document.createElement('script');                    
+  scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';            
+  vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+</script>
+  
+
+<div id="which-routes-are-popular" class="section level3">
+<h3>Which Routes are Popular?</h3>
+<p>Routes were determined by plotting start stations versus the end stations, then focusing on popular routes. For casual riders I filtered routes which had less than 800 rides. With only these routes, there are two clear patterns emerging. The first, more dominate pattern shows rides favorably start and end at the same location. The second pattern shows that the second most favorable pattern travels from one highly popular recreational site to another highly popular recreational sites, as higher popularity routes coincide with the popularity of the start stations. Both of these patterns show typical behavior expected of sight-seeing and tourism, indicating that casual riders may often be non-residents guests to the city.</p>
+
+<div class='tableauPlaceholder' id='viz1642041348757' style='position: relative'>
+  <object class='tableauViz'  style='display:none;'>
+    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+    <param name='embed_code_version' value='3' /> 
+    <param name='site_root' value='' />
+    <param name='name' value='DivvyBikesAnalysisofCasualRidersvsMembershipRiders&#47;CasualRiderTopRoutes' />
+    <param name='tabs' value='no' />
+    <param name='toolbar' value='yes' />
+    <param name='animate_transition' value='yes' />
+    <param name='display_static_image' value='yes' />
+    <param name='display_spinner' value='yes' />
+    <param name='display_overlay' value='yes' />
+    <param name='display_count' value='yes' />
+    <param name='language' value='en-US' />
+  </object>
+</div>                
+<script type='text/javascript'>                    
+  var divElement = document.getElementById('viz1642041348757');                    
+  var vizElement = divElement.getElementsByTagName('object')[0];                    
+  if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='1250px';
+    vizElement.style.maxWidth='100%';
+    vizElement.style.minHeight='1050px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*0.75)+'px';} 
+  else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='1250px';
+    vizElement.style.maxWidth='100%';vizElement.style.minHeight='1050px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*0.75)+'px';} 
+  else { vizElement.style.width='100%';vizElement.style.minHeight='1250px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*1.77)+'px';}                     
+  var scriptElement = document.createElement('script');                    
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';   
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+</script>
+<br />
+<p>In this second chart, I look at the popular routes of membership rides, filtering out routes that had been traveled less than 600 times. Unlike casual riders, the top 10 popular start stations do not indicate the popularity of the route. The pronounced pattern here shows the most popular routes are one way short distance, where the return trip is close in popularity, and located away from recreational sites. Recreational routes do show that membership riders are also popularly completing trips starting at and ending at the same local park stations. These patterns would show that membership riders are using the bikes to commute to and from work, run errands around town, or engage in exercise or other social activities, consistent with what a local resident might use a personal bike for.</p>
+</div>
+
+<div class='tableauPlaceholder' id='viz1642038846363' style='position: relative'>
+    <object class='tableauViz'  style='display:none;'>
+      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+      <param name='embed_code_version' value='3' /> 
+      <param name='site_root' value='' />
+      <param name='name' value='DivvyBikesAnalysisofCasualRidersvsMembershipRiders&#47;MembershipRiderTopRoutes' />
+      <param name='tabs' value='no' />
+      <param name='toolbar' value='yes' />
+      <param name='animate_transition' value='yes' />
+      <param name='display_static_image' value='yes' />
+      <param name='display_spinner' value='yes' />
+      <param name='display_overlay' value='yes' />
+      <param name='display_count' value='yes' />
+      <param name='language' value='en-US' />
+   </object>
+</div>                
+<script type='text/javascript'>                    
+  var divElement = document.getElementById('viz1642038846363');                    
+  var vizElement = divElement.getElementsByTagName('object')[0];                    
+  if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='1250px';
+    vizElement.style.maxWidth='100%';vizElement.style.minHeight='1050px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*0.75)+'px';}
+  else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='1250px';
+    vizElement.style.maxWidth='100%';vizElement.style.minHeight='1050px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*0.75)+'px';} 
+  else { vizElement.style.width='100%';vizElement.style.minHeight='1050px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*1.77)+'px';}                     
+  var scriptElement = document.createElement('script');                    
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';       
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+</script>
+
+<div id="when-do-the-ride" class="section level3">
+<h3>When do the Ride?</h3>
+
+<p>The following charts show views related to trips taken with respect to different time markers. The top chart looks at the trips over the entire year. The trend for both types of riders increases through the warmer months before dropping again as weather cools, but there are a couple of factors that might contribute to this. Last winter COVID trends were on the rise (same as this year), however the vaccine had not been made available to the population. The other fact is that snow, ice and sleet are common in the Chicago area. This is a trend I am not likely to see in Seattle, but it is important to identify here as the data is from a source where this sort of weather event can inform how someone might ride a bike. Honestly, I still laugh at pictures of 2008 “Snowpocalypse” re-posted during this year’s Seattle winter storm. While living in PA I routinely had snow and ice that would fall in October or November, then last all winter as “Nor’easter” storms would continually add to the un-melted portion of packed ice and persist until March or April in the spring. Another observation I found from the data, is that the peaks in the number of trips for casual riders and membership riders were following different patterns. So I considered the number of trips categorized by day of the week and month to get more details.</p>
+
+<div class='tableauPlaceholder' id='viz1642039168400' style='position: relative'>
+  <object class='tableauViz'  style='display:none;'>
+    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+    <param name='embed_code_version' value='3' /> 
+    <param name='site_root' value='' />
+    <param name='name' value='DivvyBikesAnalysisofCasualRidersvsMembershipRiders&#47;RiderPreferences' />
+    <param name='tabs' value='no' />
+    <param name='toolbar' value='yes' />
+    <param name='animate_transition' value='yes' />
+    <param name='display_static_image' value='yes' />
+    <param name='display_spinner' value='yes' />
+    <param name='display_overlay' value='yes' />
+    <param name='display_count' value='yes' />
+    <param name='language' value='en-US' />
+  </object>
+</div>                
+<script type='text/javascript'>                    
+  var divElement = document.getElementById('viz1642039168400');                    
+  var vizElement = divElement.getElementsByTagName('object')[0];                    
+  if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='1250px';
+    vizElement.style.maxWidth='100%';vizElement.style.minHeight='850px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*0.75)+'px';} 
+  else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='1250px';
+    vizElement.style.maxWidth='100%';vizElement.style.minHeight='850px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*0.75)+'px';} 
+  else { vizElement.style.width='100%';vizElement.style.minHeight='1250px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*1.77)+'px';}                     
+  var scriptElement = document.createElement('script');                    
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';      
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+</script>
+
+<p>When categorized by month, casual rides peaked in July and August, and remained high through the summer months, which corresponding with common vacation times. Membership riders were also higher in warmer months, but stayed active during the cooler fall as students returned back to school. Riders by the Day of the Week chart shows that Casual riders had a preference for weekend trips, while membership riders favored the weekdays and peaked during midweek.</p>
+
+<p>The final set of charts considered the Number of Riders by Hour for Weekends and Weekdays separately as it is clear from the previous charts that behavior for each group have different trends over time. When considering the Weekdays, there is a clear trend with peaks during commute times before and after school and work. Higher peaks in the evening commute which has higher numbers consistent with afternoon and evening activities. Casual rides rose quickly in two places, after breakfast and after lunch. It should be noted that there appears to be a potential underlying pattern that may indicate rides made by non-member locals as it may be following similar trends to membership riders. Weekend times however are about the same for both groups, who would possibly both be going about recreational activities and exercise.</p>
+
+<div class='tableauPlaceholder' id='viz1642039068742' style='position: relative'>
+  <object class='tableauViz'  style='display:none;'>
+    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+    <param name='embed_code_version' value='3' /> 
+    <param name='site_root' value='' />
+    <param name='name' value='DivvyBikesAnalysisofCasualRidersvsMembershipRiders&#47;Dashboard13' />
+    <param name='tabs' value='no' />
+    <param name='toolbar' value='yes' />
+    <param name='animate_transition' value='yes' />
+    <param name='display_static_image' value='yes' />
+    <param name='display_spinner' value='yes' />
+    <param name='display_overlay' value='yes' />
+    <param name='display_count' value='yes' />
+    <param name='language' value='en-US' />
+  </object>
+</div>                
+<script type='text/javascript'>                    
+  var divElement = document.getElementById('viz1642039068742');                    
+  var vizElement = divElement.getElementsByTagName('object')[0];                    
+  if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='1250px';
+    vizElement.style.maxWidth='100%';vizElement.style.minHeight='550px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*0.75)+'px';} 
+  else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='1250px';
+    vizElement.style.maxWidth='100%';vizElement.style.minHeight='850px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*0.75)+'px';} 
+  else { vizElement.style.width='100%';vizElement.style.minHeight='1250px';
+    vizElement.style.maxHeight=(divElement.offsetWidth*1.77)+'px';}                     
+  var scriptElement = document.createElement('script');                    
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; 
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+</script>
+
+</div>
+</div>
+
+<div id="final-conclusions" class="section level2">
+<h2>Final Conclusions</h2>
+<p>In this analysis I set out to investigate how the riders used Divvy bike-share bikes, to better understand the use of bike-share companies use in city neighborhoods. By considering both casual riders and membership riders, I analyzed only three questions which could ultimately be answered based on the data. These three questions asked about where riders were riding, what routes they were taking, and when they were riding and led to the following conclusions:</p>
+<ul>
+<li><p>Casual riders made up 45% of riders, and were likely doing casual sight-seeing trips. They commonly favored weekends and summer at and around the Navy Pier. Many of these riders were likely performed by non-resident guests of the city who could benefit from short term payment options.</p></li>
+<li><p>Membership riders made up 55% of riders, and were likely commuting or carrying out their daily activities and exercise when the weather permitted safe use and travel.</p></li>
+</ul>
+<p>Seattle, like Chicago, has many recreational and tourist sites which attracts both tourism and locals. The pandemic forces us to mask up while going to the gym, which can be uncomfortable and too much for many people. Outdoor activities are a great way to keep active. Seeing how Divvy bikes in Chicago were used over the last year for exercising by both casual riders and membership riders, shows that bike-share companies offer a great, affordable and safe option for transportation, recreation and exercise.</p>
+</div>
+
+<div id="other-questions" class="section level2">
+<h2>Other Questions</h2>
+<p>As an outsider to Chicago, I love that these bikes are widely available to the community, and I can see how it is being used in Chicago. I can see how this sort of system can be applied to other cities like Seattle. This analysis has helped me to truly understand how bike-share systems could be useful in my local community, despite my inability to obtain local data. There were some other questions I would have liked to investigate that might have added to my general understanding, however the data needed to understand those questions was either missing or very difficult to extract from the available data. Additionally there were a few things that alluded to some potential issues with the Divvy system.</p>
+<p><strong>1.</strong> While investigating the station locations, I referred often to Google maps in order to look at the street level images. Images and negative reviews showed me that there may be an issue with stocking of classic bikes near resident locations that would convince locals to purchase membership passes. In another analysis, it might be helpful to do a more detailed station evaluation to understand how stocked, or under stocked, a station might be. This was not part of the question I was asking, but would be an interesting investigation focusing on the Membership rider. This analysis could even go further to get more detailed data on what amenities are nearby or how the demographics are distributed around the stations.</p>
+<p><strong>2.</strong> As part of this analysis I considered views from every variable in my final exported dataset. While analyzing trip duration, I became convinced that inexperienced riders venturing for the first time, may not understand the locking mechanisms, or the requirement to lock the bikes at an appropriate Divvy station. First, February has the lowest number of trips taken by both groups, likely due to weather in the area, however there were the highest number of outliers when considering the trip duration. There where multiple casual rides which lasted for more than 3 weeks. However the largest outliers for membership riders was about a day. I feel it is unlikely that any ride actually lasted that long, making it clear that there may be an issue with locking mechanism just failing. Particularly, since Divvy charges $1200 for a lost or stolen bike after only 24 hours.</p>
+<p><strong>3.</strong> When analyzing routes, I found that latitude and longitude coordinates for routes that started and ended in the same station did not actually occur in the same point. it is expected there was some small variations, but at times there were trips that went completely across the park and were considered the same station. When comparing this with bike types, which should have only had classic and electronic bike options, also had a docked bike category. I could not track down what a docked bike was, so ultimately I assumed that some bikes where not properly docked. In reading about the expansions <span class="citation"><a href="#ref-expansion_2021" role="doc-biblioref"><span>“Divvy Kicks Off West Side Expansion with 3,500 Bikes, 107 <span>‘e-Station’</span> Parking Areas. Streetsblog Chicago”</span></a> (<a href="#ref-expansion_2021" role="doc-biblioref">2021b</a>)</span>, from a comment on this <a href="https://chi.streetsblog.org/2021/07/09/divvy-kicks-off-west-side-expansion-with-3500-bikes-107-e-station-parking-areas/">article</a>it is made clear that there are separate docking systems for classic bikes vs ebikes. Inexperienced riders may not truly understand the system, or that they need to be docked at the correct station. The website would lead me to believe that any Divvy station would work.</p>
+</div>
+
+<div id="references" class="section level2 numbered">
+<h2 class="unnumbered">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-best_transport" class="csl-entry">
+<span>“10 Cities with the Best Public Transportation and What Transit Planners Can Learn from Them.”</span> n.d. Accessed January 10, 2022. <a href="https://www.remix.com/blog/10-cities-with-the-best-public-transportation">https://www.remix.com/blog/10-cities-with-the-best-public-transportation</a>.
+</div>
+<div id="ref-about_Seattle" class="csl-entry">
+<span>“About Seattle - <span>OPCD</span> <span></span> Seattle.gov.”</span> n.d. Accessed January 13, 2022. <a href="https://www.seattle.gov/opcd/population-and-demographics/about-seattle">https://www.seattle.gov/opcd/population-and-demographics/about-seattle</a>.
+</div>
+<div id="ref-alex_over" class="csl-entry">
+Alex. n.d. <span>“Over 450 Electric Bikes Compared! What Does an Ebike Cost? <span class="nocase">eBikesHQ</span>.com.”</span> Accessed January 14, 2022. <a href="https://ebikeshq.com/cost-of-an-ebike/">https://ebikeshq.com/cost-of-an-ebike/</a>.
+</div>
+<div id="ref-seattle_bikeshare" class="csl-entry">
+<span>“Bike Share - Transportation <span></span> Seattle.gov.”</span> 2021. December 7, 2021. <a href="http://www.seattle.gov/transportation/projects-and-programs/programs/bike-program/bike-share">http://www.seattle.gov/transportation/projects-and-programs/programs/bike-program/bike-share</a>.
+</div>
+<div id="ref-census_2021" class="csl-entry">
+<span>“Census Data Shows Seattle’s Population Surge over Last Decade, Fueled in Part by Tech Job Growth. <span>GeekWire</span>.”</span> 2021. August 13, 2021. <a href="https://www.geekwire.com/2021/census-data-shows-seattles-population-surge-last-decade-fueled-part-tech-job-growth/">https://www.geekwire.com/2021/census-data-shows-seattles-population-surge-last-decade-fueled-part-tech-job-growth/</a>.
+</div>
+<div id="ref-cbs_chicago_2013" class="csl-entry">
+Chicago, CBS. 2013a. <span>“City’s Bike Sharing Program Launches Today.”</span> <em>CBS Chicago</em>. CBS Chicago. <a href="https://chicago.cbslocal.com/2013/06/28/citys-bike-sharing-program-launches-today/">https://chicago.cbslocal.com/2013/06/28/citys-bike-sharing-program-launches-today/</a>.
+</div>
+<div id="ref-cbs_chicago_citys_2013" class="csl-entry">
+———. 2013b. <span>“City’s Bike Sharing Program Launches Today.”</span> June 28, 2013. <a href="https://chicago.cbslocal.com/2013/06/28/citys-bike-sharing-program-launches-today/">https://chicago.cbslocal.com/2013/06/28/citys-bike-sharing-program-launches-today/</a>.
+</div>
+<div id="ref-divvy_blog" class="csl-entry">
+<span>“Divvy Blog. Divvy Bikes.”</span> n.d. Accessed January 10, 2022. <a href="http://ride.divvybikes.com/blog">http://ride.divvybikes.com/blog</a>.
+</div>
+<div id="ref-divvy_2021" class="csl-entry">
+<span>“Divvy Kicks Off West Side Expansion with 3,500 Bikes, 107 <span>‘e-Station’</span> Parking Areas. Streetsblog Chicago.”</span> 2021a. July 9, 2021. <a href="https://chi.streetsblog.org/2021/07/09/divvy-kicks-off-west-side-expansion-with-3500-bikes-107-e-station-parking-areas/">https://chi.streetsblog.org/2021/07/09/divvy-kicks-off-west-side-expansion-with-3500-bikes-107-e-station-parking-areas/</a>.
+</div>
+<div id="ref-expansion_2021" class="csl-entry">
+———. 2021b. July 9, 2021. <a href="https://chi.streetsblog.org/2021/07/09/divvy-kicks-off-west-side-expansion-with-3500-bikes-107-e-station-parking-areas/">https://chi.streetsblog.org/2021/07/09/divvy-kicks-off-west-side-expansion-with-3500-bikes-107-e-station-parking-areas/</a>.
+</div>
+<div id="ref-divvy_data" class="csl-entry">
+<span>“Divvy System Data. Divvy Bikes.”</span> n.d. Accessed January 4, 2022. <a href="http://ride.divvybikes.com/system-data">http://ride.divvybikes.com/system-data</a>.
+</div>
+<div id="ref-electric_cost" class="csl-entry">
+<span>“Electric Bike Maintenance Cost.”</span> n.d. Accessed January 13, 2022. <a href="https://bicyclevolt.com/electric-bike-maintenance-cost/">https://bicyclevolt.com/electric-bike-maintenance-cost/</a>.
+</div>
+<div id="ref-treehugger" class="csl-entry">
+Facebook, Twitter, and University of Toronto. n.d. <span>“How Much Does It Cost to Commute by Bike? Treehugger.”</span> Accessed January 13, 2022. <a href="https://www.treehugger.com/how-much-does-it-cost-to-commute-by-bike-4858452">https://www.treehugger.com/how-much-does-it-cost-to-commute-by-bike-4858452</a>.
+</div>
+<div id="ref-gilmore_aaa_2010" class="csl-entry">
+Gilmore, Susan. 2010. <span>“<span>AAA</span> Calculates Annual Cost to Own/Operate Car: $8,500. The Seattle Times.”</span> April 8, 2010. <a href="https://www.seattletimes.com/seattle-news/aaa-calculates-annual-cost-to-own-operate-car-8500/">https://www.seattletimes.com/seattle-news/aaa-calculates-annual-cost-to-own-operate-car-8500/</a>.
+</div>
+<div id="ref-google" class="csl-entry">
+<span>“Google Maps. Google Maps.”</span> n.d. Accessed January 11, 2022. <a href="https://www.google.com/maps/search/Divvy,+Chicago,+IL/@41.8989125,-87.7013528,13.12z">https://www.google.com/maps/search/Divvy,+Chicago,+IL/@41.8989125,-87.7013528,13.12z</a>.
+</div>
+<div id="ref-lubridate" class="csl-entry">
+Grolemund, Garrett, and Hadley Wickham. 2011. <span>“Dates and Times Made Easy with <span class="nocase">lubridate</span>.”</span> <em>Journal of Statistical Software</em> 40 (3): 1–25. <a href="https://www.jstatsoft.org/v40/i03/">https://www.jstatsoft.org/v40/i03/</a>.
+</div>
+<div id="ref-politico" class="csl-entry">
+<span>“Has Seattle Found the Solution to Driving Alone to Work? - <span>POLITICO</span> Magazine.”</span> n.d. Accessed January 13, 2022. <a href="https://www.politico.com/magazine/story/2019/05/23/seattle-car-free-transportation-what-works-226935/">https://www.politico.com/magazine/story/2019/05/23/seattle-car-free-transportation-what-works-226935/</a>.
+</div>
+<div id="ref-divvy_home" class="csl-entry">
+<span>“Home <span></span> Divvy Bikes.”</span> n.d. Accessed January 4, 2022. <a href="https://divvybikes.com/__tbs/divvybikes">https://divvybikes.com/__tbs/divvybikes</a>.
+</div>
+<div id="ref-highcharts" class="csl-entry">
+Kunst, Joshua. 2020. <em>Highcharter: A Wrapper for the ’Highcharts’ Library</em>. <a href="https://CRAN.R-project.org/package=highcharter">https://CRAN.R-project.org/package=highcharter</a>.
+</div>
+<div id="ref-living" class="csl-entry">
+<span>“Living Wage Calculator - Living Wage Calculation for Seattle-Tacoma-Bellevue, <span>WA</span>.”</span> n.d. Accessed January 13, 2022. <a href="https://livingwage.mit.edu/metros/42660">https://livingwage.mit.edu/metros/42660</a>.
+</div>
+<div id="ref-lloyd_how_2017" class="csl-entry">
+Lloyd, Sarah Anne. 2017. <span>“How Do Seattle Commutes Happen? Curbed Seattle.”</span> September 21, 2017. <a href="https://seattle.curbed.com/2017/9/21/16346824/seattle-commute-data-bus-drive">https://seattle.curbed.com/2017/9/21/16346824/seattle-commute-data-bus-drive</a>.
+</div>
+<div id="ref-orca" class="csl-entry">
+<span>“<span>ORCA</span>: Home.”</span> n.d. Accessed January 13, 2022. <a href="https://orcacard.com/ERG-Seattle/p1_001.do">https://orcacard.com/ERG-Seattle/p1_001.do</a>.
+</div>
+<div id="ref-Divvy_pricing" class="csl-entry">
+<span>“Pricing <span></span> Divvy <span></span> Lyft.”</span> n.d. Accessed January 4, 2022. <a href="https://lyft.com/bikes/chicago-il/pricing">https://lyft.com/bikes/chicago-il/pricing</a>.
+</div>
+<div id="ref-divvy_privacy" class="csl-entry">
+<span>“Privacy Policy.”</span> n.d. Accessed January 4, 2022. <a href="https://www.li.me/en-us/legal/privacy-policy/">https://www.li.me/en-us/legal/privacy-policy/</a>.
+</div>
+<div id="ref-R_project" class="csl-entry">
+R Core Team. 2013. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="http://www.R-project.org/">http://www.R-project.org/</a>.
+</div>
+<div id="ref-seattlepi_seattles_2021" class="csl-entry">
+SeattlePI, Alec Regimbal. 2021. <span>“Seattle’s Cost of Living Is 56.8% Higher Than National Average. Seattlepi.com.”</span> June 22, 2021. <a href="https://www.seattlepi.com/local/seattlenews/article/seattle-cost-living-higher-than-national-average-16265888.php">https://www.seattlepi.com/local/seattlenews/article/seattle-cost-living-higher-than-national-average-16265888.php</a>.
+</div>
+<div id="ref-reward_2021" class="csl-entry">
+<span>“The Reward for Expansion and Electrification of Divvy Is Record-Breaking Ridership. Streetsblog Chicago.”</span> 2021. September 24, 2021. <a href="https://chi.streetsblog.org/2021/09/24/the-reward-for-expansion-and-electrification-of-divvy-is-record-breaking-ridership/">https://chi.streetsblog.org/2021/09/24/the-reward-for-expansion-and-electrification-of-divvy-is-record-breaking-ridership/</a>.
+</div>
+<div id="ref-tidyverse" class="csl-entry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+</div>
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+				</article>
 
 				</div>
 			</div>

@@ -38,6 +38,7 @@
 		color: #52575c;
 		line-height: 1.75em;
 		font-size: 15pt;
+
 	}
 
 	h1,h2,h3,h4,h5,h6
@@ -240,17 +241,24 @@
 
 		ul
 		{
+		  display: block;
+      list-style-type: disc;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 3em;
 		}
 
 			ul.default
 			{
 				list-style: disc;
-				padding-left: 1em;
+				padding-left: 3em;
 			}
 			
 				ul.default li
 				{
-					padding-left: 0.5em;
+					padding-left: 3em;
 				}
 			
 			ul.actions
@@ -266,7 +274,7 @@
 				ul.actions li
 				{
 					display: inline-block;
-					margin-left: 1em;
+					margin-left: 3em;
 				}
 				
 					ul.actions li:first-child
@@ -330,6 +338,7 @@
 
 		ol
 		{
+      padding-left: 1.5em;
 		}	
 
 			ol.default
@@ -930,7 +939,7 @@
 	{
 		position: relative;
 		z-index: 1;
-		text-align: center;
+		text-align: left;
 		border-top: solid 1px #d2d7dc;
 		color: #a2a7ac;
 		padding-top: 4em;
